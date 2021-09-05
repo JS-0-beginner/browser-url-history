@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danger</title>
+
+    <style>
+        body
+        {
+            background-color: #1A1A1A;
+        }
+        #image
+        {
+            width: 80%;
+            margin: auto;
+            border: 2px red solid;
+        }
+        #image img
+        {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            
+        }
+        #btn
+        {
+            width: 80%;
+            margin: auto;
+            text-align: center;            
+        }
+        button
+        {
+            font-size: 30px;
+            cursor: pointer;
+            color: red;
+            background-color: #1A1A1A;
+            border: 1px red solid;
+        }
+    </style>
+    
+</head>
+<body>
+    
+    <div id="image">
+        
+            <img src="imgs/alert.jpg" alt="">
+        
+    </div>
+
+    <br>
+    <br>
+    
+    <div id="btn">
+
+            <button onclick="danger()">
+                Click Here
+            </button>
+            
+            <br>
+            <br>
+    
+            <button onclick="decision()">
+                Confirm
+            </button>
+
+            <br>
+            <br>
+
+            <button onclick="reloadPage()">
+                Reload
+            </button>
+
+            <br>
+            <br>
+
+            <button onclick="newWebsite()">
+                Hit
+            </button>
+
+    </div>
+
+    <script src="alert.js"></script>
+</body>
+</html>
