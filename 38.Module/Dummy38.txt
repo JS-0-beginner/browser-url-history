@@ -25,3 +25,5 @@ WD_day_38_M38
  -------------------------------------->
 
 retrieve local storage value and display them
+
+ContentEditable

@@ -4,13 +4,14 @@ const addItem = () =>
     const productNames = document.getElementById('product-name');
     const names = productNames.value;
 
-    //Display
-    displayProduct(names);
     if(!names)
     {
         return;
     }
 
+    //Display
+    displayProduct(names);
+    
     //Add to Local storage
     addProductCart(names);
 
@@ -27,6 +28,7 @@ const displayProduct = names =>
     productUl.appendChild(productLi);
 }
 
+//Getting the API Object
 const getCart = () =>
 {
     const cart = localStorage.getItem('cart');
@@ -42,18 +44,20 @@ const getCart = () =>
     return cartObj;
 }
 
+//Adding product names to API Cart-Object
 const addProductCart = names =>
 {
     const cart = getCart();
     if(cart[names])
     {
-        cart[names] = cart[names] + 1;
+        cart[names] = cart[names] + 1; //product quantity
     }
     else
     {
-        cart[names] = 1;
+        cart[names] = 1; //product quantity
     }
-    // console.log(cart);
+    console.log(cart); //Test
+
     const cartStringified = JSON.stringify(cart);
     localStorage.setItem('cart', cartStringified);
 }
