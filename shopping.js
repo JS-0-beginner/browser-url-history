@@ -80,3 +80,4 @@ const placeOrder = () =>
     localStorage.removeItem('cart');
 }
 
+
