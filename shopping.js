@@ -1,83 +1,67 @@
 //Showing Ready Results
-const addItem = () =>
-{
-    const productNames = document.getElementById('product-name');
-    const names = productNames.value;
+const addItem = () => {
+  const items = document.getElementById("product-name");
+  const productName = items.value;
 
-    if(!names)
-    {
-        return;
-    }
+  if (!productName) {
+    return;
+  }
 
-    //Display
-    displayProduct(names);
-    
-    //Add to Local storage
-    addProductCart(names);
+  //Display
+  displayProduct(productName);
 
-    //clear
-    productNames.value = '';
-}
+  //Add to Local storage
+  addProductCart(productName);
 
-const displayProduct = names =>
-{
-    const productUl = document.getElementById('products');
-    const productLi = document.createElement('li');
-    productLi.innerText = names;
+  //clear
+  items.value = "";
+};
 
-    productUl.appendChild(productLi);
-}
+const displayProduct = (productName) => {
+  const productUl = document.getElementById("products");
+  const productLi = document.createElement("li");
+  productLi.innerText = productName;
 
-//Getting the API Object
-const getCart = () =>
-{
-    const cart = localStorage.getItem('cart');
-    let cartObj;
-    if(cart)
-    {
-        cartObj = JSON.parse(cart);
-    }
-    else
-    {
-        cartObj = {};
-    }
-    return cartObj;
-}
+  productUl.appendChild(productLi);
+};
 
-//Adding product names to API Cart-Object
-const addProductCart = names =>
-{
-    const cart = getCart();
-    if(cart[names])
-    {
-        cart[names] = cart[names] + 1; //product quantity
-    }
-    else
-    {
-        cart[names] = 1; //product quantity
-    }
-    console.log(cart); //Test
+//Checking for Getting the Cart-Object(key) from Local Storage
+const getCart = () => {
+  const beforecart = localStorage.getItem("cart");
+  let cartObj;
+  if (beforecart) {
+    cartObj = JSON.parse(beforecart);
+  } else {
+    cartObj = {};
+  }
+  return cartObj;
+};
 
-    const cartStringified = JSON.stringify(cart);
-    localStorage.setItem('cart', cartStringified);
-}
+//Adding product names to Cart-Object in Local Storage
+const addProductCart = (productName) => {
+  const cart = getCart();
+  if (cart[productName]) {
+    cart[productName] = cart[productName] + 1; //product quantity
+  } else {
+    cart[productName] = 1; //product quantity
+  }
+  console.log(cart); //Test
+
+  const cartStringified = JSON.stringify(cart);
+  localStorage.setItem("cart", cartStringified);
+};
 
 //Showing Previous Results
-const previousLocalStorageCart = () =>
-{
-    const cart = getCart();
-    for(const names in cart)
-    {
-        displayProduct(names);
-    }
-}
+const previousLocalStorageCart = () => {
+  const cart = getCart();
+  for (const everyProduct in cart) {
+    displayProduct(everyProduct);
+  }
+};
 previousLocalStorageCart();
 
 //Place Order
-const placeOrder = () =>
-{
-    document.getElementById('products').textContent = '';
-    localStorage.removeItem('cart');
-}
-
-
+const placeOrder = () => {
+  document.getElementById("products").textContent = "";
+  localStorage.removeItem("cart");
+};
