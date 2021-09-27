@@ -44,29 +44,30 @@ console.log(getCart()); //Test
 //Here, [productNames] is parameter of this function
 
 const addProductCart = (productNames) => {
-  const productsCart = getCart();
+  const productsPair = getCart();
 
   // productsCart[productNames] = 1;
 
   //Quantity value for same name products
-  if (productsCart[productNames]) {
-    productsCart[productNames] = productsCart[productNames] + 1; // n... + 1
+  if (productsPair[productNames]) {
+    productsPair[productNames] = productsPair[productNames] + 1; // n... + 1
   } else {
-    productsCart[productNames] = 1;
+    productsPair[productNames] = 1;
   }
-  console.log(productsCart); //Test
+  console.log(productsPair); //Test
 
   //Now setting products in local storage by stringifying because we can't put array/objects directly in local storage's value section, it will show [Object Object]. It only stores plain text / string
-  const productsCartStringified = JSON.stringify(productsCart);
-  localStorage.setItem("cart", productsCartStringified);
+  const productsPairStringified = JSON.stringify(productsPair);
+  localStorage.setItem("cart", productsPairStringified);
 };
 
 //Retrieving Local Storage in UI
 const retrieveLSCart = () => {
-  const cart = getCart();
+  const lsCart = getCart();
 
   //Using for in because of object
-  for (const productNames in cart) {
+  for (const productNames in lsCart) {
+    console.log(productNames);
     displayProduct(productNames);
   }
 };
