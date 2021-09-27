@@ -1,12 +1,11 @@
 //Showing Ready Results
 const addItem = () => {
-  const items = document.getElementById("product-name");
-  const productName = items.value;
-
+  const productNameField = document.getElementById("product-name");
+  const productName = productNameField.value;
+  //Error handler for blank input field
   if (!productName) {
     return;
   }
-
   //Display
   displayProduct(productName);
 
@@ -14,14 +13,14 @@ const addItem = () => {
   addProductCart(productName);
 
   //clear
-  items.value = "";
+  productNameField.value = "";
 };
 
 //Display Product Mechanism
-const displayProduct = (productName) => {
+const displayProduct = (productNames) => {
   const productUl = document.getElementById("products");
   const productLi = document.createElement("li");
-  productLi.innerText = productName;
+  productLi.innerText = productNames;
 
   productUl.appendChild(productLi);
 };
@@ -38,31 +37,42 @@ const getCart = () => {
   }
   return cartObj;
 };
+console.log(getCart()); //Test
+//You can also check on browser's console by typing getCart()
 
 //Adding product names to Cart-Object(Key-Value) in Local Storage
-const addProductCart = (productName) => {
-  const products = getCart();
-  if (products[productName]) {
-    products[productName] = products[productName] + 1; //product quantity
+//Here, [productNames] is parameter of this function
+
+const addProductCart = (productNames) => {
+  const productsCart = getCart();
+
+  // productsCart[productNames] = 1;
+
+  //Quantity value for same name products
+  if (productsCart[productNames]) {
+    productsCart[productNames] = productsCart[productNames] + 1; // n... + 1
   } else {
-    products[productName] = 1; //cartObj = { { products[productName]) : (1) } }
+    productsCart[productNames] = 1;
   }
-  console.log(products); //Test
+  console.log(productsCart); //Test
 
-  const productsStringified = JSON.stringify(products);
-  localStorage.setItem("cart", productsStringified);
+  //Now setting products in local storage by stringifying because we can't put array/objects directly in local storage's value section, it will show [Object Object]. It only stores plain text / string
+  const productsCartStringified = JSON.stringify(productsCart);
+  localStorage.setItem("cart", productsCartStringified);
 };
 
-//Showing Previous Results
-const previousLocalStorageCart = () => {
+//Retrieving Local Storage in UI
+const retrieveLSCart = () => {
   const cart = getCart();
-  for (const everyProduct in cart) {
-    displayProduct(everyProduct);
+
+  //Using for in because of object
+  for (const productNames in cart) {
+    displayProduct(productNames);
   }
 };
-previousLocalStorageCart();
+retrieveLSCart();
 
-//Place Order
+//Place Order for deleting the particular 'cart' key-value pair
 const placeOrder = () => {
   document.getElementById("products").textContent = "";
   localStorage.removeItem("cart");

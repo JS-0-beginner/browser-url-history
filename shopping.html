@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shopping</title>
-</head>
-<body>
-    
+  </head>
+  <body>
     <h1>Shopping</h1>
 
-    <input type="text" id="product-name">
+    <input type="text" id="product-name" />
 
-    <button onclick="addItem()">
-        Add Item
-    </button>
+    <button onclick="addItem()">Add Item</button>
 
-    <br>
-    <br>
+    <br />
+    <br />
 
-    <ul id="products">
+    <ul id="products"></ul>
 
+    <br />
+    <br />
+
+    <button onclick="placeOrder()">Place Order</button>
+    <br />
+    <br />
+
+    <p style="color: lightgray;">Copy from here</p>
+    <ul style="color: lightgray;">
+        <li>Phone</li>
+        <li>Laptop</li>
+        <li>Watch</li>
     </ul>
 
-    <br>
-    <br>
-
-    <button onclick="placeOrder()" >
-        Place Order
-    </button>
-
     <script src="shopping.js"></script>
-</body>
+  </body>
 </html>
