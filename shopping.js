@@ -17,6 +17,7 @@ const addItem = () => {
   items.value = "";
 };
 
+//Display Product Mechanism
 const displayProduct = (productName) => {
   const productUl = document.getElementById("products");
   const productLi = document.createElement("li");
@@ -25,30 +26,31 @@ const displayProduct = (productName) => {
   productUl.appendChild(productLi);
 };
 
-//Checking for Getting the Cart-Object(key) from Local Storage
+//Checking for Getting the Cart-Object(Key-Value) from Local Storage
+//(1)Here cartObj=value and 'cart'=key which is declared by >beforeCart<
 const getCart = () => {
-  const beforecart = localStorage.getItem("cart");
+  const beforeCart = localStorage.getItem("cart");
   let cartObj;
-  if (beforecart) {
-    cartObj = JSON.parse(beforecart);
+  if (beforeCart) {
+    cartObj = JSON.parse(beforeCart);
   } else {
     cartObj = {};
   }
   return cartObj;
 };
 
-//Adding product names to Cart-Object in Local Storage
+//Adding product names to Cart-Object(Key-Value) in Local Storage
 const addProductCart = (productName) => {
-  const cart = getCart();
-  if (cart[productName]) {
-    cart[productName] = cart[productName] + 1; //product quantity
+  const products = getCart();
+  if (products[productName]) {
+    products[productName] = products[productName] + 1; //product quantity
   } else {
-    cart[productName] = 1; //product quantity
+    products[productName] = 1; //cartObj = { { products[productName]) : (1) } }
   }
-  console.log(cart); //Test
+  console.log(products); //Test
 
-  const cartStringified = JSON.stringify(cart);
-  localStorage.setItem("cart", cartStringified);
+  const productsStringified = JSON.stringify(products);
+  localStorage.setItem("cart", productsStringified);
 };
 
 //Showing Previous Results
